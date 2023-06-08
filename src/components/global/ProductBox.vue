@@ -7,9 +7,9 @@ defineProps<{
 </script>
 
 <template>
-  <div class="shadow-md w-36 h-64 rounded-md grid grid-rows-[1fr,1fr] m-2">
-    <div class="m-2">
-      <img class="max-h-full max-w-full" alt="vue" :src="product.image" />
+  <div class="shadow-md w-36 h-64 rounded-md grid grid-rows-[6rem,1fr] m-2">
+    <div class="m-2 h-full">
+      <img class="max-h-full max-w-full mx-auto" alt="vue" :src="product.image" />
     </div>
     <div class="m-2 flex flex-col space-y-1">
       <span class="line-clamp-2">{{ product.title }}</span>
@@ -18,9 +18,9 @@ defineProps<{
         <div class="w-5">
           <img alt="vue" src="@/assets/logo.svg" />
         </div>
-        <span class="text-sm">Karanganyar</span>
+        <span class="text-xs">Karanganyar</span>
       </div>
-      <div class="flex text-sm space-x-1">
+      <div class="flex text-xs space-x-1">
         <div class="flex">
           <div class="w-5">
             <img alt="vue" src="@/assets/logo.svg" />
