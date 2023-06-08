@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Product } from '@/stores/product'
+import { Icon } from '@iconify/vue'
 
 defineProps<{
   product: Product
@@ -16,14 +17,14 @@ defineProps<{
       <span class="font-bold">${{ product.price }}</span>
       <div class="flex text-sm">
         <div class="w-5">
-          <img alt="vue" src="@/assets/logo.svg" />
+          <icon icon="material-symbols:pin-drop" />
         </div>
         <span class="text-xs">Karanganyar</span>
       </div>
-      <div class="flex text-xs space-x-1">
-        <div class="flex">
+      <div class="flex text-xs space-x-1 items-center">
+        <div class="flex items-center">
           <div class="w-5">
-            <img alt="vue" src="@/assets/logo.svg" />
+            <icon icon="material-symbols:star" class="text-yellow-400 text-lg" />
           </div>
           <span>3.8</span>
         </div>
