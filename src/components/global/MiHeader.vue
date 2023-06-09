@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import ButtonHeader from '@/components/global/MiHeader/ButtonHeader.vue'
-import { Icon } from '@iconify/vue'
+import MiIcon from '@/components/global/MiIcon.vue'
 </script>
 
 <template>
   <div class="bg-gray-200 text-sm text-gray-600 grid grid-cols-2 py-1 px-10">
     <div class="flex">
-      <icon class="text-lg" icon="material-symbols:phone-android-outline" />
+      <mi-icon size="large" icon="material-symbols:phone-android-outline" />
       <button-header text="Download Aplikasi" />
     </div>
     <div class="justify-self-end flex space-x-4">
@@ -23,13 +23,13 @@ import { Icon } from '@iconify/vue'
     <div class="flex-1 relative">
       <input class="border rounded-md w-full pl-10 py-2 pr-2" />
       <div class="absolute top-2 left-2">
-        <icon icon="material-symbols:search" class="text-2xl" />
+        <mi-icon icon="material-symbols:search" size="extra-large" is-clickable />
       </div>
     </div>
-    <icon icon="material-symbols:shopping-basket-outline" class="text-2xl" />
-    <icon icon="material-symbols:notifications-outline" class="text-2xl" />
-    <icon icon="material-symbols:sms-outline" class="text-2xl" />
-    <icon icon="material-symbols:add-business-outline" class="text-2xl" />
+    <mi-icon icon="material-symbols:shopping-basket-outline" size="extra-large" is-clickable />
+    <mi-icon icon="material-symbols:notifications-outline" size="extra-large" is-clickable />
+    <mi-icon icon="material-symbols:sms-outline" size="extra-large" is-clickable />
+    <mi-icon icon="material-symbols:add-business-outline" size="extra-large" is-clickable />
     <span>Toko</span>
     <span>Mi Profile</span>
   </div>

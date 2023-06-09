@@ -13,11 +13,15 @@ export interface Product {
 
 export const useProductStore = defineStore('product', () => {
   const products = ref<Array<Product>>(0)
-  const productList = computed(() => products.value)
-  const getProduct = async () => {
+  const getProductState = computed(() => products.value)
+  const loading = ref<boolean>(false)
+  const getLoadingState = computed(() => loading.value)
+  const getProductData = async () => {
+    loading.value = true
     const res = await invoke<Array<Product>>('products', 'GET')
     products.value = res.data
+    loading.value = false
   }
 
-  return { products, getProduct, productList }
+  return { getProductData, getProductState, getLoadingState }
 })
