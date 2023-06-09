@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import type { Product } from '@/stores/product'
 import { Icon } from '@iconify/vue'
+import type { PropType } from 'vue'
 
-defineProps<{
-  product: Product
-}>()
+defineProps({
+  product: {
+    type: Object as PropType<Product>,
+    required: true
+  }
+})
 </script>
 
 <template>
