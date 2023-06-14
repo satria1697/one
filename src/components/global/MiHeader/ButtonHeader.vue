@@ -8,5 +8,5 @@ defineProps({
 </script>
 
 <template>
-  <div class="hover:text-blue-600 hover:cursor-pointer w-fit">{{ text }}</div>
+  <div class="hover:text-primary hover:cursor-pointer w-fit">{{ text }}</div>
 </template>

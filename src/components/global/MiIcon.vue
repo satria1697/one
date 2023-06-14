@@ -19,7 +19,7 @@ const props = defineProps({
 })
 
 const classList = computed(() => {
-  const list: Array<String> = []
+  const list: Array<String> = ['text-primary']
   if (props.size == 'small') {
     list.push('text-xs')
   }
