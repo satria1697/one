@@ -22,6 +22,9 @@ class Navigation implements NavigationInterface {
       params
     })
   }
+  getParams() {
+    return this.router.currentRoute.value.params
+  }
 }
 
 export default Navigation

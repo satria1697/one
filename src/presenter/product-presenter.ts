@@ -21,6 +21,31 @@ class ProductPresenter {
       }
     }
   }
+
+  async getProduct(id: string): MiResponse<Product> {
+    try {
+      const res = await invoke<Product>(`products/${id}`, 'GET')
+      if (res.data == '') {
+        return {
+          data: null,
+          error: `DATA-NOT-FOUND`,
+          message: 'fail'
+        }
+      }
+      return {
+        data: res.data,
+        error: '',
+        message: 'success'
+      }
+    } catch (e) {
+      const error = e as AxiosError
+      return {
+        data: null,
+        error: error.message,
+        message: 'fail'
+      }
+    }
+  }
 }
 
 export default ProductPresenter

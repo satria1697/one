@@ -14,7 +14,6 @@ const props = defineProps({
 })
 
 const navigateToProduct = () => {
-  console.log(props.product)
   navigation.go({ name: 'product', params: { id: props.product?.id } })
 }
 </script>

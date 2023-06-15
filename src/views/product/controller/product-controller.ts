@@ -1,14 +1,12 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { Product } from '@/entities/product'
+import type { Product } from '@/entities/product'
 import ProductPresenter from '@/presenter/product-presenter'
-import MiToast from '@/components/global/mi-toast'
 
 const productPresenter = new ProductPresenter()
-const miToast = new MiToast()
 
-export const useHomeBindStore = defineStore('home-bind', () => {
-  const products = ref<Array<Product>>([])
+export const useProductBindStore = defineStore('product-bind', () => {
+  const products = ref<Product | null>(null)
   const error = ref('')
   const loading = ref<boolean>(false)
 
@@ -16,12 +14,15 @@ export const useHomeBindStore = defineStore('home-bind', () => {
   const getLoadingState = computed(() => loading.value)
   const getErrorMessage = computed(() => error.value)
 
-  const getProductData = async () => {
+  const getProductData = async (id: string) => {
     loading.value = true
-    const res = await productPresenter.getAllProduct()
+    const res = await productPresenter.getProduct(id)
     if (res.error) {
-      error.value = res.error
-      miToast.failed(res.error)
+      if (res.error == 'DATA-NOT-FOUND') {
+        error.value = `Can't find product with ID ${id}`
+      } else {
+        error.value = res.error
+      }
       loading.value = false
       return
     }
@@ -29,5 +30,10 @@ export const useHomeBindStore = defineStore('home-bind', () => {
     loading.value = false
   }
 
-  return { getProductData, getProductState, getLoadingState, getErrorMessage }
+  return {
+    getProductState,
+    getLoadingState,
+    getErrorMessage,
+    getProductData
+  }
 })
