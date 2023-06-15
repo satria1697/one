@@ -1,6 +1,7 @@
 import { invoke } from '@/service/axios'
 import type { Product } from '@/stores/product'
 import { AxiosError } from 'axios'
+import type { MiResponse } from '@/entities/mi-response'
 
 class ProductPresenter {
   async getAllProduct(): MiResponse<Array<Product>> {
