@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import ProductBox from '@/components/global/ProductBox.vue'
-import { useProductStore } from '@/stores/product'
 import { onMounted } from 'vue'
 import MiLoading from '@/components/global/MiLoading.vue'
+import { useProductStore } from '@/views/home/controller/home-controller'
 
 let productStore = useProductStore()
 onMounted(() => {
