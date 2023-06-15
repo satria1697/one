@@ -1,18 +1,29 @@
 <script setup lang="ts">
-import type { Product } from '@/stores/product'
 import type { PropType } from 'vue'
 import MiIcon from '@/components/global/MiIcon.vue'
+import type { Product } from '@/entities/product'
+import Navigation from '@/router/navigation'
 
-defineProps({
+const navigation = new Navigation()
+
+const props = defineProps({
   product: {
     type: Object as PropType<Product>,
     required: true
   }
 })
+
+const navigateToProduct = () => {
+  console.log(props.product)
+  navigation.go({ name: 'product', params: { id: props.product?.id } })
+}
 </script>
 
 <template>
-  <div class="shadow-md w-36 h-64 rounded-md grid grid-rows-[6rem,1fr] m-2">
+  <div
+    class="shadow-md hover:shadow-xl transition w-36 h-64 rounded-md grid grid-rows-[6rem,1fr] m-2"
+    @click="navigateToProduct()"
+  >
     <div class="m-2 h-full">
       <img class="max-h-full max-w-full mx-auto" alt="vue" :src="product.image" />
     </div>
