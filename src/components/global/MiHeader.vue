@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import ButtonHeader from '@/components/global/MiHeader/ButtonHeader.vue'
 import MiIcon from '@/components/global/MiIcon.vue'
+import Navigation from '@/router/navigation'
+
+const navigation = new Navigation()
 </script>
 
 <template>
@@ -18,7 +21,9 @@ import MiIcon from '@/components/global/MiIcon.vue'
     </div>
   </div>
   <div class="pb-3 pt-5 px-10 flex items-center space-x-2.5">
-    <span class="text-3xl">Mi Ehe</span>
+    <div class="cursor-pointer" @click="navigation.go({ name: 'home' })">
+      <span class="text-3xl">Mi Ehe</span>
+    </div>
     <span class="text-gray-500 text-xs">Kategori</span>
     <div class="flex-1 relative">
       <input class="border rounded-md w-full pl-10 py-2 pr-2" />
