@@ -3,8 +3,10 @@ import type { PropType } from 'vue'
 import MiIcon from '@/components/global/MiIcon.vue'
 import type { Product } from '@/entities/product'
 import Navigation from '@/router/navigation'
+import Price from '@/utils/price'
 
 const navigation = new Navigation()
+const miPrice = new Price()
 
 const props = defineProps({
   product: {
@@ -20,7 +22,7 @@ const navigateToProduct = () => {
 
 <template>
   <div
-    class="shadow-md hover:shadow-xl transition w-36 h-64 rounded-md grid grid-rows-[6rem,1fr] m-2"
+    class="shadow-md hover:shadow-xl transition w-48 h-64 rounded-md grid grid-rows-[6rem,1fr] m-2"
     @click="navigateToProduct()"
   >
     <div class="m-2 h-full">
@@ -28,7 +30,7 @@ const navigateToProduct = () => {
     </div>
     <div class="m-2 flex flex-col space-y-1">
       <span class="line-clamp-2">{{ product.title }}</span>
-      <span class="font-bold">${{ product.price }}</span>
+      <span class="font-bold">{{ miPrice.convertToRupiah(product.price) }}</span>
       <div class="flex text-sm">
         <div class="w-5">
           <mi-icon icon="material-symbols:pin-drop" />

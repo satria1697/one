@@ -28,9 +28,20 @@ onMounted(() => {
           :src="productBindStore.getProductState.image"
           :alt="productBindStore.getProductState.title ?? 'image'"
         />
-        <div>
-          <span>Share</span>
-          <span>withslist</span>
+        <div class="flex space-x-10 items-center justify-center text-xl mt-10">
+          <!--todo: change this to component-->
+          <div
+            class="flex group p-2 hover:bg-primary cursor-pointer items-center space-x-2 transition"
+          >
+            <mi-icon class="group-hover:text-white" icon="material-symbols:share" />
+            <span class="group-hover:text-white">Share</span>
+          </div>
+          <div
+            class="flex group p-2 hover:bg-primary cursor-pointer items-center space-x-2 transition"
+          >
+            <mi-icon class="group-hover:text-white" icon="material-symbols:heart-plus-outline" />
+            <span class="group-hover:text-white">Wishlist</span>
+          </div>
         </div>
       </div>
       <div class="flex flex-col space-y-4">
@@ -65,6 +76,15 @@ onMounted(() => {
           <h3 class="text-xl">Description</h3>
           <span>{{ productBindStore.getProductState.description }}</span>
         </div>
+        <mi-button>
+          <div class="flex group justify-center items-center space-x-2">
+            <mi-icon
+              class="group-hover:text-white text-quaternary transition"
+              icon="material-symbols:shopping-cart-outline"
+            />
+            <span>Add to cart</span>
+          </div>
+        </mi-button>
       </div>
     </div>
   </div>

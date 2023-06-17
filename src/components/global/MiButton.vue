@@ -2,7 +2,7 @@
 defineProps({
   text: {
     type: String,
-    required: true
+    default: ''
   }
 })
 </script>
@@ -11,6 +11,8 @@ defineProps({
   <button
     class="bg-primary text-quaternary py-1.5 px-2.5 rounded-md hover:bg-secondary transition hover:text-white"
   >
-    {{ text }}
+    <slot>
+      {{ text }}
+    </slot>
   </button>
 </template>
