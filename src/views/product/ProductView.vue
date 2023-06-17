@@ -28,6 +28,10 @@ onMounted(() => {
           :src="productBindStore.getProductState.image"
           :alt="productBindStore.getProductState.title ?? 'image'"
         />
+        <div>
+          <span>Share</span>
+          <span>withslist</span>
+        </div>
       </div>
       <div class="flex flex-col space-y-4">
         <span class="font-semibold text-3xl">{{ productBindStore.getProductState.title }}</span>
