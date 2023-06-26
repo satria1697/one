@@ -2,8 +2,16 @@
 import ButtonHeader from '@/components/global/MiHeader/ButtonHeader.vue'
 import MiIcon from '@/components/global/MiIcon.vue'
 import Navigation from '@/router/navigation'
+import { onMounted } from 'vue'
+import { useMiHeaderBindStore } from '@/components/global/MiHeader/controller/mi-header-controller'
+import CategoryHeader from '@/components/global/MiHeader/CategoryHeader.vue'
 
 const navigation = new Navigation()
+const miHeaderBindStore = useMiHeaderBindStore()
+
+onMounted(() => {
+  miHeaderBindStore.getCategoryData()
+})
 </script>
 
 <template>
@@ -24,7 +32,7 @@ const navigation = new Navigation()
     <div class="cursor-pointer" @click="navigation.go({ name: 'home' })">
       <span class="text-3xl">Mi Ehe</span>
     </div>
-    <span class="text-gray-500 text-xs">Kategori</span>
+    <category-header :categories="miHeaderBindStore.getCategoryState" />
     <div class="flex-1 relative">
       <input class="border rounded-md w-full pl-10 py-2 pr-2" />
       <div class="absolute top-2 left-2">

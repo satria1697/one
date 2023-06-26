@@ -6,7 +6,7 @@ const navigation = new Navigation()
 </script>
 
 <template>
-  <div class="center h-screen flex-col">
+  <div class="center h-screen flex-col text">
     <div>
       <span class="text-9xl">404</span>
       <span>Sorry, we can't find your page</span>

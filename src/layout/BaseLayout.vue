@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MiHeader from '@/components/global/MiHeader.vue'
+import MiHeader from '@/components/global/MiHeader/MiHeader.vue'
 </script>
 
 <template>
