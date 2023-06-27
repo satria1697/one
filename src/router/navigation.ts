@@ -1,4 +1,4 @@
-import { LocationQuery, RouteParams, useRouter } from 'vue-router'
+import { LocationQuery, LocationQueryValue, RouteParams, useRouter } from 'vue-router'
 
 interface NavigationPushInterface {
   name?: string
@@ -11,6 +11,7 @@ interface NavigationInterface {
   go: (options: NavigationPushInterface) => Future<void>
   getQuery: () => LocationQuery
   getParams: () => RouteParams
+  getQueryDataAsString(query: LocationQueryValue | LocationQueryValue[]): string
 }
 
 class Navigation implements NavigationInterface {
@@ -32,6 +33,16 @@ class Navigation implements NavigationInterface {
 
   getQuery() {
     return this.router.currentRoute.value.query
+  }
+
+  getQueryDataAsString(query: LocationQueryValue | LocationQueryValue[]): string {
+    if (query) {
+      if (Array.isArray(query)) {
+        return query[0] ?? ''
+      }
+      return query
+    }
+    return ''
   }
 }
 

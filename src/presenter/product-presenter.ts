@@ -46,6 +46,31 @@ class ProductPresenter {
       }
     }
   }
+
+  async getFilteredProductByCategory(category: string): MiResponse<Array<Product>> {
+    try {
+      const res = await invoke<Product>(`products/category/${category}`, 'GET')
+      if (res.data == '') {
+        return {
+          data: null,
+          error: `DATA-NOT-FOUND`,
+          message: 'fail'
+        }
+      }
+      return {
+        data: res.data,
+        error: '',
+        message: 'success'
+      }
+    } catch (e) {
+      const error = e as AxiosError
+      return {
+        data: null,
+        error: error.message,
+        message: 'fail'
+      }
+    }
+  }
 }
 
 export default ProductPresenter
