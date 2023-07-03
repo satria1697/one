@@ -6,6 +6,7 @@ import CheckObject from '@/utils/checkObject'
 import { onBeforeRouteUpdate } from 'vue-router'
 import ProductBox from '@/components/global/ProductBox.vue'
 import { useProductFilterBindStore } from '@/views/product/filter/controller/product-filter-controller'
+import MiLoading from '@/components/global/MiLoading.vue'
 
 const navigation = new Navigation()
 const checkObject = new CheckObject()
@@ -40,9 +41,12 @@ const goToFilterProduct = (category: string) => {
 <template>
   <div class="mx-40">
     <div class="grid grid-cols-[16rem,1fr]">
-      <div class="border rounded-md min-h-[10rem] p-4 space-y-2 flex flex-col">
+      <div class="border rounded-md h-fit p-4 space-y-2 flex flex-col">
         <span class="text-2xl font-semibold">Category</span>
-        <div>
+        <div v-if="productFilterBindStore.getIsLoadingCategoryState" class="w-full h-24">
+          <mi-loading class="h-full" />
+        </div>
+        <div v-else>
           <mi-button
             v-for="category in productFilterBindStore.getCategoryState"
             :key="category"
@@ -55,8 +59,12 @@ const goToFilterProduct = (category: string) => {
         </div>
       </div>
       <div class="flex flex-1 flex-wrap items-start">
+        <div v-if="productFilterBindStore.getIsLoadingProductState" class="w-full h-72">
+          <mi-loading class="h-full" />
+        </div>
         <product-box
           v-for="product in productFilterBindStore.getProductState"
+          v-else
           :key="product.id"
           :product="product"
         />
