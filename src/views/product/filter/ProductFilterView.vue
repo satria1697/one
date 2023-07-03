@@ -1,52 +1,36 @@
 <script setup lang="ts">
-import CategoryPresenter from '@/presenter/category-presenter'
-import { onMounted, reactive, Ref, ref } from 'vue'
+import { onMounted } from 'vue'
 import MiButton from '@/components/global/MiButton.vue'
 import Navigation from '@/router/navigation'
 import CheckObject from '@/utils/checkObject'
 import { onBeforeRouteUpdate } from 'vue-router'
-import ProductPresenter from '@/presenter/product-presenter'
 import ProductBox from '@/components/global/ProductBox.vue'
+import { useProductFilterBindStore } from '@/views/product/filter/controller/product-filter-controller'
 
 const navigation = new Navigation()
 const checkObject = new CheckObject()
-const categoryPresenter = new CategoryPresenter()
-const productPresenter = new ProductPresenter()
 
-let categories = ref([])
-let selected = ref([])
-let data = reactive({
-  product: []
-})
+const productFilterBindStore = useProductFilterBindStore()
 
 onMounted(async () => {
   const query = navigation.getQuery()
   if (checkObject.hasProperty(query, 'category')) {
-    const category = query['category']
-    selected.value.push(category)
-    let response = await categoryPresenter.getAllCategory()
-    categories.value = response.data
-    await getProduct(navigation.getQueryDataAsString(category))
+    productFilterBindStore.setSelectedCategory(query['category'])
+    await productFilterBindStore.getCategory()
+    await productFilterBindStore.getProduct()
     return
   }
   navigation.go({ name: 'home' })
 })
 
 onBeforeRouteUpdate(async (to, from) => {
-  selected.value = []
   if (to.query != from.query) {
     if (checkObject.hasProperty(to.query, 'category')) {
-      const category = to.query['category']
-      selected.value.push(category)
-      await getProduct(navigation.getQueryDataAsString(category))
+      productFilterBindStore.setSelectedCategory(to.query['category'])
+      await productFilterBindStore.getProduct()
     }
   }
 })
-
-const getProduct = async (category: string) => {
-  let filteredProductByCategory = await productPresenter.getFilteredProductByCategory(category)
-  data.product = filteredProductByCategory.data
-}
 
 const goToFilterProduct = (category: string) => {
   navigation.go({ name: 'product:filter', query: { category } })
@@ -60,9 +44,9 @@ const goToFilterProduct = (category: string) => {
         <span class="text-2xl font-semibold">Category</span>
         <div>
           <mi-button
-            v-for="category in categories"
+            v-for="category in productFilterBindStore.getCategoryState"
             :key="category"
-            :class="selected.includes(category) ? 'text-secondary' : ''"
+            :class="productFilterBindStore.getSelectedState == category ? 'text-secondary' : ''"
             type="empty"
             @click="goToFilterProduct(category)"
           >
@@ -71,7 +55,11 @@ const goToFilterProduct = (category: string) => {
         </div>
       </div>
       <div class="flex flex-1 flex-wrap items-start">
-        <product-box v-for="product in data.product" :key="product.id" :product="product" />
+        <product-box
+          v-for="product in productFilterBindStore.getProductState"
+          :key="product.id"
+          :product="product"
+        />
       </div>
     </div>
   </div>
