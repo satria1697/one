@@ -22,16 +22,9 @@ class ProductPresenter {
     }
   }
 
-  async getProduct(id: string): MiResponse<Product> {
+  async getProduct(id: string): Promise<MiResponse<Product | null>> {
     try {
       const res = await invoke<Product>(`products/${id}`, 'GET')
-      if (res.data == '') {
-        return {
-          data: null,
-          error: `DATA-NOT-FOUND`,
-          message: 'fail'
-        }
-      }
       return {
         data: res.data,
         error: '',
@@ -47,16 +40,9 @@ class ProductPresenter {
     }
   }
 
-  async getFilteredProductByCategory(category: string): MiResponse<Array<Product>> {
+  async getFilteredProductByCategory(category: string): Promise<MiResponse<Array<Product>>> {
     try {
-      const res = await invoke<Product>(`products/category/${category}`, 'GET')
-      if (res.data == '') {
-        return {
-          data: null,
-          error: `DATA-NOT-FOUND`,
-          message: 'fail'
-        }
-      }
+      const res = await invoke<Array<Product>>(`products/category/${category}`, 'GET')
       return {
         data: res.data,
         error: '',
@@ -65,7 +51,7 @@ class ProductPresenter {
     } catch (e) {
       const error = e as AxiosError
       return {
-        data: null,
+        data: [],
         error: error.message,
         message: 'fail'
       }

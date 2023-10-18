@@ -1,15 +1,22 @@
-import type { LocationQuery, LocationQueryValue, RouteParams } from 'vue-router'
+import type {
+  LocationQuery,
+  LocationQueryRaw,
+  LocationQueryValue,
+  NavigationFailure,
+  RouteParams,
+  RouteParamsRaw
+} from 'vue-router'
 import { useRouter } from 'vue-router'
 
 interface NavigationPushInterface {
   name?: string
-  params?: object
-  query?: object
+  params?: RouteParamsRaw
+  query?: LocationQueryRaw
 }
 
 interface NavigationInterface {
   goBack: () => void
-  go: (options: NavigationPushInterface) => Future<void>
+  go: (options: NavigationPushInterface) => Promise<void | NavigationFailure | undefined>
   getQuery: () => LocationQuery
   getParams: () => RouteParams
   getQueryDataAsString(query: LocationQueryValue | LocationQueryValue[]): string
@@ -20,7 +27,7 @@ class Navigation implements NavigationInterface {
   goBack() {
     this.router.back()
   }
-  go(options: NavigationPushInterface): Future<void> {
+  go(options: NavigationPushInterface): Promise<void | NavigationFailure | undefined> {
     const { name, params, query } = options
     return this.router.push({
       name,

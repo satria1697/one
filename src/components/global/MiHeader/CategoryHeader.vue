@@ -7,7 +7,7 @@ const navigation = new Navigation()
 
 defineProps({
   categories: {
-    type: Array as PropType<Array<String>>,
+    type: Array as PropType<Array<string>>,
     required: true
   }
 })

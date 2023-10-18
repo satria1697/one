@@ -1,7 +1,9 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import CategoryPresenter from '@/presenter/category-presenter'
-import miToast from '@/components/global/mi-toast'
+import MiToast from '@/components/global/mi-toast'
+
+const miToast = new MiToast()
 
 const categoryPresenter = new CategoryPresenter()
 

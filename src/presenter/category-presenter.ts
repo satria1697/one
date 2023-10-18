@@ -3,9 +3,9 @@ import { invoke } from '@/service/axios'
 import type { AxiosError } from 'axios'
 
 class CategoryPresenter {
-  async getAllCategory(): Promise<MiResponse<Array<String>>> {
+  async getAllCategory(): Promise<MiResponse<Array<string>>> {
     try {
-      const res = await invoke<Array<String>>('products/categories', 'GET')
+      const res = await invoke<Array<string>>('products/categories', 'GET')
       return {
         data: res.data,
         error: '',
