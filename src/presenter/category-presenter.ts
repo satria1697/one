@@ -1,9 +1,9 @@
-import { MiResponse } from '@/entities/mi-response'
+import type { MiResponse } from '@/entities/mi-response'
 import { invoke } from '@/service/axios'
-import { AxiosError } from 'axios'
+import type { AxiosError } from 'axios'
 
 class CategoryPresenter {
-  async getAllCategory(): MiResponse<Array<String>> {
+  async getAllCategory(): Promise<MiResponse<Array<String>>> {
     try {
       const res = await invoke<Array<String>>('products/categories', 'GET')
       return {

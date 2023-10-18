@@ -1,10 +1,10 @@
 import { invoke } from '@/service/axios'
-import type { Product } from '@/stores/product'
-import { AxiosError } from 'axios'
+import type { AxiosError } from 'axios'
 import type { MiResponse } from '@/entities/mi-response'
+import type { Product } from '@/entities/product'
 
 class ProductPresenter {
-  async getAllProduct(): MiResponse<Array<Product>> {
+  async getAllProduct(): Promise<MiResponse<Array<Product>>> {
     try {
       const res = await invoke<Array<Product>>('products', 'GET')
       return {

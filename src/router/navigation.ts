@@ -1,4 +1,5 @@
-import { LocationQuery, LocationQueryValue, RouteParams, useRouter } from 'vue-router'
+import type { LocationQuery, LocationQueryValue, RouteParams } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 interface NavigationPushInterface {
   name?: string

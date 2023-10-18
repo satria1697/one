@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { Product } from '@/entities/product'
+import type { Product } from '@/entities/product'
 import ProductPresenter from '@/presenter/product-presenter'
 import MiToast from '@/components/global/mi-toast'
 
